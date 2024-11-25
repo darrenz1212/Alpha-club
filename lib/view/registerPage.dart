@@ -48,7 +48,6 @@ class _RegisterPageState extends State<RegisterPage> {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Registrasi Berhasil, silahkan login')),
       );
-      // Redirect ke LoginPage
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => const LoginPage()),

@@ -40,13 +40,11 @@ class _LoginPageState extends State<LoginPage> {
     final result = await loginController.performLogin(username, password, role);
 
     if (result == null) {
-      // Navigasi ke MainPage jika login berhasil
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => const MainPage()),
       );
     } else {
-      // Tampilkan pesan error jika login gagal
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text(result)),
       );
