@@ -4,7 +4,7 @@ class LoginService {
   final Dio _dio = Dio();
 
   Future<Map<String, dynamic>?> login(String username, String password, String role) async {
-    const String url = 'http://localhost:8000/auth/login';
+    const String url = 'http://192.168.1.11:8000/auth/login';
 
     try {
       final response = await _dio.post(
@@ -19,7 +19,7 @@ class LoginService {
       if (response.statusCode == 200) {
         return response.data; 
       } else {
-        return null; // Login gagal
+        return null; 
       }
     } on DioError catch (e) {
       throw e.response?.data['message'] ?? 'An error occurred.';

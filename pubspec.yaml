@@ -4,7 +4,7 @@ publish_to: 'none'
 version: 0.1.0
 
 environment:
-  sdk: ^3.6.0-332.0.dev
+  sdk: ">=3.5.4 <4.0.0"
 
 dependencies:
   flutter:
@@ -12,6 +12,7 @@ dependencies:
   dio: ^5.7.0
   flutter_riverpod: ^2.6.1
   riverpod_annotation: ^2.6.1
+  intl: ^0.18.0
 
 dev_dependencies:
   flutter_test:
