@@ -9,7 +9,7 @@ class RegisterService {
     required String confirmPassword,
     String role = 'user', 
   }) async {
-    const String url = 'http://localhost:8000/auth/register';
+    const String url = 'http://192.168.1.10:8000/auth/register';
 
     try {
       final response = await _dio.post(
@@ -23,7 +23,7 @@ class RegisterService {
       );
 
       if (response.statusCode == 200) {
-        return null;
+        return response.data['status'];
       } else {
         return response.data['message'] ?? 'Registration failed.';
       }

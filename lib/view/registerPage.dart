@@ -13,8 +13,7 @@ class RegisterPage extends StatefulWidget {
 class _RegisterPageState extends State<RegisterPage> {
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _confirmPasswordController =
-      TextEditingController();
+  final TextEditingController _confirmPasswordController = TextEditingController();
 
   Future<void> _register(BuildContext context, WidgetRef ref) async {
     final username = _usernameController.text.trim();
@@ -42,9 +41,7 @@ class _RegisterPageState extends State<RegisterPage> {
       password: password,
       confirmPassword: confirmPassword,
     );
-    print('$result');
-    if (result == 'Registrasi berhasil!') {
-      print("Registration successful! Navigating to LoginPage...");
+    if (result == 'success') {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Registrasi Berhasil, silahkan login')),
       );

@@ -26,7 +26,7 @@ class RegisterController extends StateNotifier<bool> {
         confirmPassword: confirmPassword,
       );
 
-      state = false; // Set loading to false
+      state = false; 
 
       return result; 
     } catch (e) {
