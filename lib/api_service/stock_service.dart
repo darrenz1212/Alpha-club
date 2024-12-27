@@ -13,7 +13,9 @@ class StockService {
       if (response.statusCode == 200) {
         List<dynamic> data = response.data;
         return data
-            .where((stock) => stock['exchange'] == 'New York Stock Exchange')
+            .where((stock) =>
+                stock['exchange'] == 'New York Stock Exchange' ||
+                stock['exchange'] == 'NASDAQ Global Select')
             .take(pageSize)
             .map((json) => Stock.fromJson(json))
             .toList();
