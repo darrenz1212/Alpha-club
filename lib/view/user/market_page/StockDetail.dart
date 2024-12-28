@@ -1,187 +1,113 @@
 import 'package:flutter/material.dart';
-import '../../../model/stock.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../../providers/stock_detail_provider.dart';
 
-class StockDetailPage extends StatelessWidget {
-  final Stock stock;
+class StockDetailPage extends ConsumerWidget {
+  final String stockSymbol;
 
-  const StockDetailPage({Key? key, required this.stock}) : super(key: key);
+  const StockDetailPage({Key? key, required this.stockSymbol}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    bool isPositive = stock.price >= 0;
+  Widget build(BuildContext context, WidgetRef ref) {
+    final stockDetail = ref.watch(stockDetailProvider(stockSymbol));
 
     return Scaffold(
-      backgroundColor: Colors.black,
       appBar: AppBar(
-        title: Text(
-          stock.name,
-          style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-        ),
+        title: Text('Stock Detail: $stockSymbol'),
         backgroundColor: Colors.black,
-        iconTheme: const IconThemeData(color: Colors.white),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            // Header Informasi Saham
-            Container(
-              width: double.infinity,
-              decoration: BoxDecoration(
-                color: Colors.grey[900],
-                borderRadius: const BorderRadius.only(
-                  bottomLeft: Radius.circular(20),
-                  bottomRight: Radius.circular(20),
+      body: stockDetail.when(
+        data: (data) => SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Center(
+                  child: Image.network(
+                    data['image'] ?? '',
+                    height: 100,
+                  ),
                 ),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black54,
-                    blurRadius: 8,
-                    spreadRadius: 2,
-                    offset: const Offset(0, 4),
-                  )
-                ],
-              ),
-              padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text(
-                    stock.name,
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 26,
-                      fontWeight: FontWeight.bold,
-                    ),
+                SizedBox(height: 20),
+                Text(
+                  data['companyName'] ?? 'Unknown Company',
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
                   ),
-                  const SizedBox(height: 8),
-                  Text(
-                    stock.symbol,
-                    style: const TextStyle(
-                      color: Colors.grey,
-                      fontSize: 18,
-                    ),
-                  ),
-                  const SizedBox(height: 16),
-                  Text(
-                    '\$${stock.price.toStringAsFixed(2)}',
-                    style: TextStyle(
-                      color: isPositive ? Colors.green : Colors.red,
-                      fontSize: 32,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  const SizedBox(height: 8),
-                  Text(
-                    isPositive ? '↑ Price Up' : '↓ Price Down',
-                    style: TextStyle(
-                      color: isPositive ? Colors.green : Colors.red,
-                      fontSize: 16,
-                    ),
-                  ),
-                ],
-              ),
+                ),
+                SizedBox(height: 10),
+                Text(
+                  'Sector: ${data['sector']}',
+                  style: TextStyle(fontSize: 16),
+                ),
+                Text(
+                  'Industry: ${data['industry']}',
+                  style: TextStyle(fontSize: 16),
+                ),
+                Text(
+                  'Exchange: ${data['exchangeShortName']}',
+                  style: TextStyle(fontSize: 16),
+                ),
+                SizedBox(height: 20),
+                Divider(),
+                Text(
+                  'Stock Information:',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+                ListTile(
+                  title: Text('Current Price'),
+                  trailing: Text('\$${data['price']}'),
+                ),
+                ListTile(
+                  title: Text('Market Cap'),
+                  trailing: Text('\$${data['mktCap']}'),
+                ),
+                ListTile(
+                  title: Text('Beta'),
+                  trailing: Text('${data['beta']}'),
+                ),
+                ListTile(
+                  title: Text('Dividend Yield'),
+                  trailing: Text('${data['lastDiv']}'),
+                ),
+                ListTile(
+                  title: Text('Price Range'),
+                  trailing: Text(data['range']),
+                ),
+                Divider(),
+                Text(
+                  'Company Description:',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+                SizedBox(height: 10),
+                Text(
+                  data['description'] ?? 'No description available',
+                  style: TextStyle(fontSize: 14),
+                  textAlign: TextAlign.justify,
+                ),
+                SizedBox(height: 20),
+                ElevatedButton(
+                  onPressed: () {
+                    if (data['website'] != null) {
+                      launchURL(data['website']);
+                    }
+                  },
+                  child: Text('Visit Company Website'),
+                ),
+              ],
             ),
-
-            const SizedBox(height: 24),
-
-            // Statistik Saham (Placeholder)
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: Card(
-                color: Colors.grey[900],
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                elevation: 4,
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Column(
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: const [
-                          Text(
-                            'Open',
-                            style: TextStyle(color: Colors.grey, fontSize: 14),
-                          ),
-                          Text(
-                            '\$250.00',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 8),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: const [
-                          Text(
-                            'High',
-                            style: TextStyle(color: Colors.grey, fontSize: 14),
-                          ),
-                          Text(
-                            '\$260.00',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 8),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: const [
-                          Text(
-                            'Low',
-                            style: TextStyle(color: Colors.grey, fontSize: 14),
-                          ),
-                          Text(
-                            '\$240.00',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-
-            const SizedBox(height: 24),
-
-            // Deskripsi Saham Placeholder
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: Card(
-                color: Colors.grey[900],
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                elevation: 4,
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: const Text(
-                    'This is a placeholder for the stock description. You can provide more details about the company, its performance, and other relevant information here.',
-                    style: TextStyle(
-                      color: Colors.grey,
-                      fontSize: 14,
-                    ),
-                    textAlign: TextAlign.justify,
-                  ),
-                ),
-              ),
-            ),
-
-            const SizedBox(height: 24),
-          ],
+          ),
         ),
+        loading: () => Center(child: CircularProgressIndicator()),
+        error: (err, stack) => Center(child: Text('Error: $err')),
       ),
     );
+  }
+
+  void launchURL(String url) {
+    // Buka URL di browser
+    // Implementasikan menggunakan url_launcher
   }
 }

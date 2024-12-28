@@ -91,7 +91,7 @@ class _StockTabState extends ConsumerState<StockTab> {
                           context,
                           MaterialPageRoute(
                             builder: (context) =>
-                                StockDetailPage(stock: stock),
+                                StockDetailPage(stockSymbol: stock.symbol),
                           ),
                         );
                       },
