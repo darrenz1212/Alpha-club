@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import './market_page.dart';
+import './outlook_page.dart';
 import 'package:alpha_club/view/news_page.dart';
 
 class MainPage extends StatefulWidget {
@@ -15,7 +16,7 @@ class _MainPageState extends State<MainPage> {
   final List<Widget> _pages = [
     const NewsPage(), 
     const MarketPage(), 
-    const Placeholder(), 
+    const OutlookPage(), 
     const Placeholder(), 
   ];
 

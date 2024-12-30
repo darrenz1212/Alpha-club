@@ -12,7 +12,7 @@ class StockNotifier extends StateNotifier<List<Stock>> {
   int _currentBatch = 0;
   static const int _batchSize = 20;
 
-  List<Stock> _allStocks = []; // Semua data saham akan disimpan di sini
+  List<Stock> _allStocks = []; 
 
   StockNotifier() : super([]);
 
@@ -26,7 +26,7 @@ class StockNotifier extends StateNotifier<List<Stock>> {
     _isLoading = true;
     state = [];
     try {
-      final stocks = await _stockService.fetchNYSEStocks(pageSize: 10000); // Ambil semua data
+      final stocks = await _stockService.fetchNYSEStocks(pageSize: 10000); 
       _allStocks = stocks;
       _isInitialized = true;
       loadMoreStocks(); // Load batch pertama (20 data pertama)
