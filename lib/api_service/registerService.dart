@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:intl/intl.dart';
 
 class RegisterService {
   final Dio _dio = Dio();
@@ -7,11 +8,16 @@ class RegisterService {
     required String username,
     required String password,
     required String confirmPassword,
-    String role = 'user', 
+    String role = 'guest',
   }) async {
-    const String url = 'http://192.168.1.10:8000/auth/register';
+    const String url = 'http://192.168.1.11:8000/auth/register';
 
     try {
+      // Hitung tanggal hari ini dikurangi satu hari
+      final DateTime today = DateTime.now();
+      final DateTime membershipEnd = today.subtract(Duration(days: 1));
+      final String formattedDate = DateFormat('yyyy-MM-dd').format(membershipEnd);
+
       final response = await _dio.post(
         url,
         data: {
@@ -19,6 +25,7 @@ class RegisterService {
           'password': password,
           'confirmPassword': confirmPassword,
           'role': role,
+          'membership_end': formattedDate, 
         },
       );
 

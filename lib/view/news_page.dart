@@ -11,15 +11,13 @@ class NewsPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final breakingNews = ref.watch(breakingNewsProvider);
     final newsList = ref.watch(newsProvider);
-
-    // MediaQuery untuk mendeteksi layar
     final screenWidth = MediaQuery.of(context).size.width;
     final isDesktop = screenWidth > 600;
 
     return SingleChildScrollView(
-      child: Center( // Pusatkan tampilan di desktop
+      child: Center( 
         child: Container(
-          width: isDesktop ? 600 : double.infinity, // Atur lebar untuk desktop
+          width: isDesktop ? 600 : double.infinity, 
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

@@ -91,16 +91,12 @@ class OverviewTab extends ConsumerWidget {
                 );
               },
             ),
-            const SizedBox(height: 300),
-
-            // Garis Pemisah
+            const SizedBox(height: 30),
             const Divider(
               color: Colors.grey,
               thickness: 1,
               height: 32,
             ),
-
-            // Market Sentiment Section
             const Text(
               'Market Sentiment',
               style: TextStyle(

@@ -20,13 +20,13 @@ class LoginController extends StateNotifier<bool> {
       final response = await _loginService.login(username, password, role);
 
       state = false; // Set loading false
-      print('Response from API: $response');
       if (response != null) {
         
         ref.read(userProvider.notifier).state = {
           'username': response['data']['username'], 
           'id': response['data']['id'], 
-          'role': response['data']['role']
+          'role': response['data']['role'],
+          'membership_end' : response['data']['']
         };
         return null;
       } else {

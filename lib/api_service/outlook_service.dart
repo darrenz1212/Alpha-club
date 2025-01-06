@@ -5,7 +5,7 @@ class OutlookService {
   final Dio _dio = Dio();
   final String _geminiApiUrl = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent';
   final String _apiKey = 'AIzaSyDRp_GaL5OKzsCRyHU7cpGwq4bh9A0Vq_w';
-  final String _prompt = 'give me stock market overview today based on S&P 500 and other index';
+  final String _prompt = 'give me stock market overview today based on S&P 500 and other index. please search through the newest news to provide me this market outlook. or if you cant provide me with real information, use dummy information for demo purpose';
 
   Future<Outlook> fetchOutlook() async {
     try {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import './user/market_page/OverviewTab.dart';
 import 'user/market_page/StockTab.dart';
-import 'user/market_page/CurrencyTab.dart';
+// import 'user/market_page/CurrencyTab.dart';
 
 class MarketPage extends StatefulWidget {
   const MarketPage({Key? key}) : super(key: key);
@@ -39,7 +39,7 @@ class _MarketPageState extends State<MarketPage>
           tabs: const [
             Tab(text: 'Overview'),
             Tab(text: 'Stock'),
-            Tab(text: 'Currencies'),
+            // Tab(text: 'Currencies'),
           ],
         ),
       ),
@@ -49,7 +49,7 @@ class _MarketPageState extends State<MarketPage>
         children: const [
           OverviewTab(),
           StockTab(),
-          CurrenciesTab(),
+          // CurrenciesTab(),
         ],
       ),
     );

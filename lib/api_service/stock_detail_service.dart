@@ -6,7 +6,7 @@ class StockDetailService {
   // Fetch Stock Detail
   Future<Map<String, dynamic>> fetchStockDetail(String symbol) async {
     const String baseUrl = 'https://financialmodelingprep.com/api/v3/profile/';
-    final String apiKey = 'OJi8xFLNTS2fsHS37jbV4b0L2Q8h1NRp';
+    final String apiKey = 'qm7dfWSql5Uf8VkOKTkCz8acB5xljAbM';
 
     try {
       final response = await _dio.get('$baseUrl$symbol?apikey=$apiKey');
@@ -23,7 +23,7 @@ class StockDetailService {
   // Fetch Key Metrics
   Future<Map<String, dynamic>> fetchStockKeyMetrics(String symbol) async {
     const String baseUrl = 'https://financialmodelingprep.com/api/v3/key-metrics/';
-    final String apiKey = 'OJi8xFLNTS2fsHS37jbV4b0L2Q8h1NRp';
+    final String apiKey = 'qm7dfWSql5Uf8VkOKTkCz8acB5xljAbM';
 
     try {
       final response = await _dio.get('$baseUrl$symbol?period=annual&apikey=$apiKey');

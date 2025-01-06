@@ -6,7 +6,7 @@ class StockService {
 
   Future<List<Stock>> fetchNYSEStocks({int pageSize = 20}) async {
     const String url =
-        'https://financialmodelingprep.com/api/v3/stock/list?apikey=OJi8xFLNTS2fsHS37jbV4b0L2Q8h1NRp';
+        'https://financialmodelingprep.com/api/v3/stock/list?apikey=qm7dfWSql5Uf8VkOKTkCz8acB5xljAbM';
 
     try {
       final response = await _dio.get(url);

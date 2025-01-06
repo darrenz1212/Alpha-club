@@ -23,7 +23,7 @@ class MarketService {
 
     try {
       for (String symbol in _symbols) {
-        final response = await _dio.get('$baseUrl$symbol?apikey=OJi8xFLNTS2fsHS37jbV4b0L2Q8h1NRp');
+        final response = await _dio.get('$baseUrl$symbol?apikey=qm7dfWSql5Uf8VkOKTkCz8acB5xljAbM');
         
         if (response.statusCode == 200) {
           List<dynamic> data = response.data;

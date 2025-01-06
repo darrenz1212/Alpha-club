@@ -6,7 +6,7 @@ class MarketSentimentService {
 
   Future<List<MarketNews>> fetchTopMarketSentiment() async {
     const String url =
-        'https://www.alphavantage.co/query?function=NEWS_SENTIMENT&topics=blockchain,technology&apikey=2Y11QE64CKKTP7O5';
+        'https://www.alphavantage.co/query?function=NEWS_SENTIMENT&topics=blockchain,technology&apikey=TAQFTMQR8WBFW1PW';
 
     try {
       final response = await _dio.get(url);
