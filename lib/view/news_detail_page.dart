@@ -21,13 +21,11 @@ class _NewsDetailPageState extends ConsumerState<NewsDetailPage> {
   @override
   void initState() {
     super.initState();
-
-    // Tambahkan logika untuk menghitung jumlah kali halaman diakses
     Future.microtask(() {
       final viewCount = ref.read(viewCountProvider.notifier);
       viewCount.state++;
 
-      // Tampilkan notifikasi jika sudah 3 kali diakses
+  
       if (viewCount.state >= 3) {
         setState(() {
           showNotification = true;

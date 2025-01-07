@@ -11,9 +11,13 @@ dependencies:
     sdk: flutter
   syncfusion_flutter_charts: ^23.1.36
   dio: ^5.7.0
+  # midtrans_sdk: ^0.4.0
   flutter_riverpod: ^2.6.1
   riverpod_annotation: ^2.6.1
   intl: ^0.18.0
+  flutter_markdown: ^0.7.5
+  google_fonts: ^6.2.1
+
 
 
 dev_dependencies:

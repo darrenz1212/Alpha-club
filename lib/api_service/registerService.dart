@@ -10,7 +10,7 @@ class RegisterService {
     required String confirmPassword,
     String role = 'guest',
   }) async {
-    const String url = 'http://192.168.1.11:8000/auth/register';
+    const String url = 'http://192.168.163.125:8000/auth/register';
 
     try {
       // Hitung tanggal hari ini dikurangi satu hari

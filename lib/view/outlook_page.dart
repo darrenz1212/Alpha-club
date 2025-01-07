@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../providers/outlook_provider.dart';
-import '../providers/user_providers.dart'; 
-import '../view/pricing.dart'; 
-import 'dart:ui'; 
+import '../providers/user_providers.dart';
+import '../view/pricing.dart';
+import 'dart:ui';
+import 'package:flutter_markdown/flutter_markdown.dart';
+
+
 class OutlookPage extends ConsumerWidget {
   const OutlookPage({Key? key}) : super(key: key);
 
@@ -25,7 +28,6 @@ class OutlookPage extends ConsumerWidget {
       ),
       body: Stack(
         children: [
-          // Konten utama halaman
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: outlookAsyncValue.when(
@@ -33,20 +35,46 @@ class OutlookPage extends ConsumerWidget {
                 child: Stack(
                   children: [
                     // Konten teks utama
-                    Text(
-                      outlook.summary,
-                      style: const TextStyle(fontSize: 16, color: Colors.white),
-                    ),
-                    // Lapisan blur untuk role guest
-                    if (role == 'guest')
-                      Positioned.fill(
-                        child: BackdropFilter(
-                          filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
-                          child: Container(
-                            color: Colors.black.withOpacity(0.5),
-                          ),
+                    // Text(
+                    //   MarkdownBody(data: outlook.summary,),
+                    //   style: const TextStyle(fontSize: 16, color: Colors.white),
+                    // ),
+                    MarkdownBody(
+                      data: outlook.summary,
+                      styleSheet: MarkdownStyleSheet(
+                        h1: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                        h2: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.grey[300],
+                        ),
+                        p: TextStyle(
+                          fontSize: 16,
+                          color: Colors.grey[400],
+                          height: 1.5,
+                        ),
+                        blockquote: TextStyle(
+                          fontSize: 16,
+                          fontStyle: FontStyle.italic,
+                          color: Colors.grey[500],
+                          backgroundColor: Colors.grey[800],
+                        ),
+                        code: TextStyle(
+                          fontSize: 14,
+                          color: Colors.greenAccent,
+                          backgroundColor: Colors.grey[900],
+                          fontFamily: 'Courier',
+                        ),
+                        listBullet: TextStyle(
+                          fontSize: 16,
+                          color: Colors.grey[400],
                         ),
                       ),
+                    )
                   ],
                 ),
               ),

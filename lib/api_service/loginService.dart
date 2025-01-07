@@ -6,7 +6,7 @@ class LoginService {
   final Dio _dio = Dio();
 
   Future<Map<String, dynamic>?> login(String username, String password, String role) async {
-    const String url = 'http://192.168.1.11:8000/auth/login';
+    const String url = 'http://192.168.163.125:8000/auth/login';
     
     try {
       final response = await _dio.post(

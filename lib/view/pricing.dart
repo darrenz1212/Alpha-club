@@ -27,7 +27,7 @@ class PricingPage extends StatelessWidget {
                       backgroundColor: Color(0xFF6A7B76),
                       textColor: Colors.white,
                       onPressed: () {
-                        // Tambahkan logika untuk memilih paket ini
+
                       },
                     ),
                     const SizedBox(height: 20),
@@ -38,7 +38,7 @@ class PricingPage extends StatelessWidget {
                       backgroundColor: const Color(0xFF8B9D83),
                       textColor: Colors.white,
                       onPressed: () {
-                        // Tambahkan logika untuk memilih paket ini
+
                       },
                     ),
                     const SizedBox(height: 20),
@@ -49,7 +49,7 @@ class PricingPage extends StatelessWidget {
                       backgroundColor: Colors.black, 
                       textColor: Colors.white,
                       onPressed: () {
-                        // Tambahkan logika untuk memilih paket ini
+
                       },
                     ),
                   ],

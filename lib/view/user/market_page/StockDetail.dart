@@ -23,12 +23,12 @@ class _StockDetailPageState extends ConsumerState<StockDetailPage> {
   void initState() {
     super.initState();
 
-    // Tambahkan _microtask untuk mengelola view count dan notifikasi
+
     Future.microtask(() {
       final viewCount = ref.read(newsDetailClickProvider.notifier);
       viewCount.state++;
 
-      // Tampilkan notifikasi jika sudah 3 kali diakses
+      
       if (viewCount.state >= 3) {
         setState(() {
           showNotification = true;
