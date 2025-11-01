@@ -1,7 +1,7 @@
-import 'package:alpha_club/view/loginPage.dart';
+// import 'package:alpha_club/view/loginPage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-// import 'view/mainPage.dart';
+import 'view/mainPage.dart';
 
 void main() {
   runApp(ProviderScope(child: MyApp()));
@@ -18,6 +18,6 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData.dark(),
-        home: LoginPage());
+        home: MainPage());
   }
 }
